@@ -33,3 +33,38 @@ class MainActivity : AppCompatActivity() {
 }
 
 ```
+
+## 툴바
+### 툴바 UI
+<androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarExercise"
+        android:theme="@style/ToolbarTheme"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/white"
+        android:titleTextColor="@color/colorPrimary"/>
+- theme 에서 actionBar 를 안보이게 설정했지만 다른 화면에선 보이기 위해 따로 만듬
+
+### 툴바 구현 (+ 상단 bar 에서 뒤로가기 구현)
+``` kotlin
+
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = ActivityExerciseBinding.inflate(layoutInflater)
+    setContentView(binding?.root)
+
+    // ActionBar 지정
+    setSupportActionBar(binding?.toolbarExercise)
+
+    // supportActionBar 가 존재한다면 뒤로가기 버튼이 보이도록 설정
+    if(supportActionBar != null){
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    // 상단 툴바에 뒤로가기 버튼이 동작하게 해주는 함수
+    binding?.toolbarExercise?.setNavigationOnClickListener {
+        onBackPressed()
+    }
+}
+
+```
