@@ -50,12 +50,12 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun setupRestView(){
         try {
-            val soundURI = Uri.parse("android:resource://com.example.a7minutesworkout/" +
-                R.raw.app_src_main_res_raw_press_start)
+            val soundURI =
+                Uri.parse("android.resource://com.example.a7minutesworkout/" + R.raw.press_start)
             player = MediaPlayer.create(applicationContext, soundURI)
             player?.isLooping = false
             player?.start()
-        } catch (e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 
