@@ -68,3 +68,54 @@ override fun onCreate(savedInstanceState: Bundle?) {
 }
 
 ```
+
+## TTS
+- 텍스트를 읽어주는 기능
+
+``` kotlin
+
+private var tts: TextToSpeech? = null
+
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding?.root)
+
+    tts = TextToSpeech(this, this)
+
+    binding?.btnSpeak.setOnClickListener {
+        speakOut(binding?.etEnteredText?.text.toString())
+    }
+}
+
+override fun onInit(status: Int){
+    // TTS 가 성공했다면 언어설정
+    if(status == TextToSpeech.SUCCESS){
+        val result = tts!!.setLanguage(Locale.US)
+
+        // TextToSpeech.LANG_MISSING_DATA: 언어 데이터 존재하지 않음
+        // TextToSpeech.LANG_NOT_SUPPORTED: 지원하지 않는 언어
+        if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
+            // 지원 안한다는 로그 생성
+            Log.e("TTS", "The Language specified is not supported!")
+        }
+    }
+}
+
+private fun speakOut(text: String){
+    // 4번째 요소: utteranceId = 코멘트, 발언, 표현 문장 같은 것? 모국어가 아닌 사람에게 유용함
+    tts?.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
+}
+
+override fun onDestroy() {
+    super.onDestroy()
+
+    if(tts != null){
+        tts?.stop()
+        sst?.shutdown()
+    }
+
+    binding = null
+}
+
+```
