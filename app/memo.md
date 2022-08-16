@@ -71,6 +71,12 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 ## TTS
 - 텍스트를 읽어주는 기능
+- 안드로이드 11에서도 동작을 원한다면 manifests 에 아래 코드 추가
+<queries>
+    <intent>
+        <action android:name="android.intent.action.TTS_SERVICE"/>
+    </intent>
+</queries>
 
 ``` kotlin
 
@@ -98,6 +104,8 @@ override fun onInit(status: Int){
         if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
             // 지원 안한다는 로그 생성
             Log.e("TTS", "The Language specified is not supported!")
+        } else {
+            Log.e("TTS", "Initialization Failed!")
         }
     }
 }
@@ -113,6 +121,43 @@ override fun onDestroy() {
     if(tts != null){
         tts?.stop()
         sst?.shutdown()
+    }
+
+    binding = null
+}
+
+```
+
+## 미디어 재생
+- mp3 파일 등을 재생가능
+
+``` kotlin
+
+private var player: MediaPlayer? = null
+
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding?.root)
+
+    binding?.btnPlayer.setOnClickListener {
+        try {
+            val soundURI = Uri.parse("android:resource://com.example.a7minutesworkout/" +
+            R.raw.app_src_main_res_raw_press_start)
+            player = MediaPlayer.create(applicationContext, soundURI)
+            player?.isLooping = false
+            player?.start()
+        } catch (e:Exception){
+            e.printStackTrace()
+        }
+    }
+}
+
+override fun onDestroy() {
+    super.onDestroy()
+
+    if(player != null){
+        player?.stop()
     }
 
     binding = null
