@@ -3,4 +3,6 @@
     <string name="start">START</string>
     <string name="start_image">start image</string>
     <string name="get_ready_for">GET READY FOR</string>
+    <string name="exercisename">ExerciseName</string>
+    <string name="image">image</string>
 </resources>
