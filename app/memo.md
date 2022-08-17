@@ -164,3 +164,13 @@ override fun onDestroy() {
 }
 
 ```
+
+## 리사이클러 뷰
+- 리사이클러뷰, 어댑터,뷰홀더의 조합
+- item.xml 을 만들고, 리사이클러뷰 에서 tools:~item 으로 아이템을 불러옴
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:listItem=""
+/>
+- https://wooooooak.github.io/android/2019/03/28/recycler_view/
