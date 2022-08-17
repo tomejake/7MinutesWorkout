@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.a7minutesworkout.databinding.ActivityExerciseBinding
 import com.example.a7minutesworkout.databinding.ItemExerciseStatusBinding
 
-class ExerciseStatusAdapter(val items: ArrayList<ExerciseModel>):
+class ExerciseStatusAdapter(private val items: ArrayList<ExerciseModel>):
     RecyclerView.Adapter<ExerciseStatusAdapter.ViewHolder>() {
 
-        class ViewHolder(binding: ItemExerciseStatusBinding): RecyclerView.ViewHolder(binding.root){
-            val tvItem = binding.tvItem
+    class ViewHolder(binding: ItemExerciseStatusBinding): RecyclerView.ViewHolder(binding.root){
+        val tvItem = binding.tvItem
 
-        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemExerciseStatusBinding.inflate(LayoutInflater.from(
@@ -25,6 +25,8 @@ class ExerciseStatusAdapter(val items: ArrayList<ExerciseModel>):
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return items.size
     }
+
+
 }
