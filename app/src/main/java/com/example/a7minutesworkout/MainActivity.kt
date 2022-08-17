@@ -20,6 +20,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding?.flBMI?.setOnClickListener {
+            val intent = Intent(this, BMIActivity::class.java)
+            startActivity(intent)
+        }
+
 //        val fLStartButton:FrameLayout = findViewById(R.id.flStart)
 //        fLStartButton.setOnClickListener {
 //            Toast.makeText(
