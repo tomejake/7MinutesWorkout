@@ -19,4 +19,5 @@
     <string name="weight_in_kg">WEIGHT (in kg)</string>
     <string name="your_bmi">YOUR BMI</string>
     <string name="height_in_cm">HEIGHT (in cm)</string>
+    <string name="metric_units">METRIC UNITS</string>
 </resources>
