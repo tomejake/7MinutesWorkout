@@ -16,4 +16,7 @@
     <string name="no">NO</string>
     <string name="bmi">BMI</string>
     <string name="calculator">Calculator</string>
+    <string name="weight_in_kg">WEIGHT (in kg)</string>
+    <string name="your_bmi">YOUR BMI</string>
+    <string name="height_in_cm">HEIGHT (in cm)</string>
 </resources>
